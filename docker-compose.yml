@@ -1,0 +1,27 @@
+version: "2"
+services:
+    registry:
+        image: registry:2.4.0
+        volumes:
+            - ./data:/var/lib/registry
+            - ./certs:/certs
+            - ./auth:/auth
+        environment:
+            - REGISTRY_HTTP_TLS_CERTIFICATE=/certs/${TLS_CERTIFICATE_FILE}
+            - REGISTRY_HTTP_TLS_KEY=/certs/${TLS_KEY_FILE}
+            - REGISTRY_AUTH=htpasswd
+            - REGISTRY_AUTH_HTPASSWD_REALM=Registry Realm
+            - REGISTRY_AUTH_HTPASSWD_PATH=/auth/${HTPASSWD_FILE}
+        container_name: registry
+        restart: always
+        ports:
+            - "443:5000"
+    frontend:
+        image: konradkleine/docker-registry-frontend:v2
+        environment:
+            - ENV_DOCKER_REGISTRY_HOST=${REGISTRY_HOST}
+            - ENV_DOCKER_REGISTRY_PORT=443
+            - ENV_DOCKER_REGISTRY_USE_SSL=1
+        container_name: frontend
+        ports:
+            - "8080:80"
