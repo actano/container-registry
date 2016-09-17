@@ -11,6 +11,5 @@ This repository provides a `docker-compose.yml` for running a docker registry an
   * `REGISTRY_HOST` - the public host name under which the registry will be available
   * `TLS_CERTIFICATE_FILE` - the file name of the TLS certificate file (just the basename) inside the `./certs` directory
   * `TLS_KEY_FILE` - the file name of the TLS key file (just the basename) inside the `./certs` directory
-  * `HTPASSWD` - the file name of the htpasswd file (just the basename) inside the `./auth` directory
+  * `HTPASSWD_FILE` - the file name of the htpasswd file (just the basename) inside the `./auth` directory
 4. Run `docker-compose up [-d]`
-# container-registry
