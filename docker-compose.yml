@@ -1,7 +1,7 @@
 version: "2"
 services:
     registry:
-        image: registry:2.4.0
+        image: registry:2.5.1
         volumes:
             - ./data:/var/lib/registry
             - ./certs:/certs
