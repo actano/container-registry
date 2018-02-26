@@ -1,11 +1,12 @@
 version: "2"
 services:
     registry:
-        image: registry:2.5.1
+        image: registry:latest
         volumes:
             - ./data:/var/lib/registry
             - ./certs:/certs
             - ./auth:/auth
+            - ./config.yml:/etc/docker/registry/config.yml
         environment:
             - REGISTRY_HTTP_TLS_CERTIFICATE=/certs/${TLS_CERTIFICATE_FILE}
             - REGISTRY_HTTP_TLS_KEY=/certs/${TLS_KEY_FILE}
